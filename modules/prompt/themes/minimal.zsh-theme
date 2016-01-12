@@ -42,7 +42,7 @@ minimal_path() {
 
 git_branch_name() {
   local branch_name="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
-  [[ -n $branch_name ]] && print "$branch_name"
+  [[ -n $branch_name ]] && print "{$branch_name}"
 }
 
 git_repo_status(){
@@ -79,8 +79,8 @@ prompt_minimal_precmd() {
   zle -N zle-keymap-select
   zle -N zle-line-finish
 
-  PROMPT='$(minimal_user)$(minimal_jobs)$(minimal_vimode)$(minimal_status) '
-  RPROMPT='$(minimal_path)$(minimal_git)'
+  PROMPT='$(minimal_path)$(minimal_git)
+$(minimal_user)$(minimal_jobs)$(minimal_vimode)$(minimal_status) '
 }
 
 prompt_minimal_setup() {
